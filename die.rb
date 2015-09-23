@@ -1,30 +1,34 @@
 class Die
+    @faceUp
+    @color
 
-    attr_accessor :face_up, :face_down, :color
-    
-    def initialize
-        @face_up = 1 
-        @color = "red"
+    def setFaceUp(a)
+        @faceUp = a
+    end
+
+    def getFaceUp()
+        @faceUp
     end
     
-    def set_face(value)
-        @face_up=value
-    end    
-    
-    def announce
-        puts "the face up is now " + @face_up.to_s 
+    def setColor(c)
+        @color = c
     end
-    
-    def announce_face_down
-        # calculate the face down value
-        @face_down = 7 - @face_up
-        
-        # print the face down value
-        puts "the face down is now " + @face_down.to_s
-    end    
-    
+
+    def talk
+        puts("I am a "+ @color + " die.")
+    end
+
     def roll
-        @face_up = (rand * 6).ceil 
-        announce
+        @faceUp = (6 * rand()).ceil
+
+        if @faceUp == 6
+            puts("CONGRATULATIONS!")
+        elsif @faceUp == 5
+            puts("Almost...")
+        else
+            puts("You rolled less than 6")
+        end
+
+        puts(@faceUp)
     end
 end
