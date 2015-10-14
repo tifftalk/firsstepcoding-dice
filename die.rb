@@ -1,34 +1,41 @@
 class Die
-    @faceUp
     @color
+    @sideUp
 
-    def setFaceUp(a)
-        @faceUp = a
+    def initialize( theColor, theSide )
+        @color = theColor
+        @sideUp = theSide
+
+        talk()
     end
 
-    def getFaceUp()
-        @faceUp
-    end
-    
-    def setColor(c)
-        @color = c
+    def setColor(theColor)
+        @color = theColor
     end
 
-    def talk
-        puts("I am a "+ @color + " die.")
-    end
+    def setSideUp( theSide )
 
-    def roll
-        @faceUp = (6 * rand()).ceil
-
-        if @faceUp == 6
-            puts("CONGRATULATIONS!")
-        elsif @faceUp == 5
-            puts("Almost...")
+        if ( theSide > 6 or theSide < 1)
+            puts "You can't do that."
         else
-            puts("You rolled less than 6")
-        end
 
-        puts(@faceUp)
+            @sideUp = theSide
+        end
+    end
+
+    def getSideUp()
+        return @sideUp
+    end
+
+    def talk()
+        puts("Hello, I am a " + @color + " die.")
+    end
+
+    def roll()
+        setSideUp((rand * 6).ceil)
+
+        if (@sideUp == 6)
+            puts "NICE ROLL!"
+        end
     end
 end
